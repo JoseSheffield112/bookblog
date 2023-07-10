@@ -14,6 +14,6 @@
     </p>
 
     <a href="/catalogue">
-        Let's go to the catalogue!
+        Let's go to our catalogue!
     </a>
 @endsection

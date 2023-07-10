@@ -6,6 +6,15 @@ body{
     font-family: "Ubuntu Light";
 }
 
+article + article{
+    margin-top: 3rem;
+    padding-top: 3rem;
+    border-top: 2px solid #000000;
+}
+
+/* CSS for dealing with navigation buttons */
+/* Acquired from w3schools */
+
 .btn {
     background-color: DodgerBlue; /* Blue background */
     border: none; /* Remove borders */
