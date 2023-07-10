@@ -13,7 +13,7 @@
         This is currently a work in progress - please bear with me - but seriously do it
     </p>
 
-    <a href="/catalogue" >
+    <a href="/catalogue">
         Let's go to the catalogue!
     </a>
 @endsection
