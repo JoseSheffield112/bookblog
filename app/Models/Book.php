@@ -24,15 +24,17 @@ class Book {
 
     public static function all()
     {
-        return collect(File::files(resource_path("/books")))
-            -> map(fn($file) => YamlFrontMatter::parsefile($file))
-            -> map(fn($document) => new Book(
-                $document->title,
-                $document->blurb,
-                $document->slug,
-                $document->date,
-                $document->body()
-            ));
+        return cache() -> remember('books.all', now()->addMinutes(2), function() {
+            return collect(File::files(resource_path("/books")))
+                -> map(fn($file) => YamlFrontMatter::parsefile($file))
+                -> map(fn($document) => new Book(
+                    $document->title,
+                    $document->blurb,
+                    $document->slug,
+                    $document->date,
+                    $document->body()
+                ));
+        });
     }
 
     public static function find($slug){
