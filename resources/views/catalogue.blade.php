@@ -6,6 +6,9 @@
 
 @section('content')
     @foreach($books as $book)
-        {{ $book->title }}
+        <h1> <a href="/book/{{ $book->slug }}"> {{ $book->title }} </a> </h1>
+        <article>
+            {{ $book->blurb }}
+        </article>
     @endforeach
 @endsection

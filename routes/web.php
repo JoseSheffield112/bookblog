@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Route;
 use App\Models\Book;
 
@@ -24,3 +25,12 @@ Route::get('/catalogue', function () {
         'books' => $books
     ]);
 });
+
+Route::get('/book/{book}', function ($slug) {
+    $book = Book::findOrFail($slug);
+
+    return ($book) ? view('book', [
+        'book' => $book
+    ]) : Redirect::to('/catalogue');
+});
+
