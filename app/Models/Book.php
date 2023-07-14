@@ -2,48 +2,13 @@
 
 namespace App\Models;
 
-use Spatie\YamlFrontMatter\YamlFrontMatter;
-use Illuminate\Support\Facades\File;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 
-class Book {
+class Book extends Model
+{
+    use HasFactory;
 
-    public $title;
-    public $blurb;
-    public $slug;
-    public $date;
-    public $body;
-
-
-    public function __construct($title, $blurb, $slug, $date, $body){
-        $this->title = $title;
-        $this->blurb = $blurb;
-        $this->slug = $slug;
-        $this->date = $date;
-        $this->body = $body;
-    }
-
-    public static function all()
-    {
-        return cache() -> remember('books.all', now()->addMinutes(2), function() {
-            return collect(File::files(resource_path("/books")))
-                -> map(fn($file) => YamlFrontMatter::parsefile($file))
-                -> map(fn($document) => new Book(
-                    $document->title,
-                    $document->blurb,
-                    $document->slug,
-                    $document->date,
-                    $document->body()
-                ));
-        });
-    }
-
-    public static function find($slug){
-        return (static::all() -> firstWhere('slug', $slug));
-    }
-
-    public static function findOrFail($slug){
-        $book = static::find($slug);
-
-        return ($book ? $book : null);
-    }
+    // preventing mass-assignment exploitation:
+    protected $fillable = ['slug', 'title', 'blurb', 'description'];
 }
