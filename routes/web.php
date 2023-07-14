@@ -33,4 +33,3 @@ Route::get('/book/{book}', function ($slug) {
         'book' => $book
     ]) : Redirect::to('/catalogue');
 });
-
