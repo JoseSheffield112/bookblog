@@ -15,21 +15,18 @@ use App\Models\Book;
 |
 */
 
-Route::get('/', function () {
-    return view('homepage');
-});
-
 Route::get('/catalogue', function () {
-    $books = Book::all();
     return view('catalogue', [
-        'books' => $books
+        'books' => Book::latest()->get()
     ]);
 });
 
-Route::get('/book/{book}', function ($slug) {
-    $book = Book::findOrFail($slug);
+Route::get('/book/{book:slug}', function (Book $book) {
+    return view('book',[
+       'book' =>  $book
+    ]);
+});
 
-    return ($book) ? view('book', [
-        'book' => $book
-    ]) : Redirect::to('/catalogue');
+Route::get('/', function () {
+    return view('homepage');
 });

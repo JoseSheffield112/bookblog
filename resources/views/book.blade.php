@@ -6,6 +6,6 @@
     </h1>
 
     <article>
-        {!! $book->body !!}
+        {{ $book->description }}
     </article>
 @endsection
