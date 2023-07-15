@@ -23,7 +23,7 @@ Route::get('/catalogue', function () {
 
 Route::get('/book/{book:slug}', function (Book $book) {
     return view('book',[
-       'book' =>  $book
+       'book' =>  $book->load('reviews')
     ]);
 });
 

@@ -11,4 +11,8 @@ class Book extends Model
 
     // preventing mass-assignment exploitation:
     protected $fillable = ['slug', 'title', 'blurb', 'description'];
+
+    public function reviews() {
+        return $this->hasMany(Review::class);
+    }
 }
