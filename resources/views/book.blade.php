@@ -1,5 +1,9 @@
 @extends('components.layout')
 
+@section('title')
+    {{ $book->title }}
+@endsection
+
 @section('content')
 
     <article>
