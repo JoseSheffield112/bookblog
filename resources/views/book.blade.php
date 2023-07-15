@@ -5,13 +5,21 @@
     <article>
         <h1> {{ $book->title }} </h1>
 
+        <p>
+            {{ $book->description }}
+        </p>
     </article>
 
-    Reviews
+    <h1>Reviews</h1>
+
     <article>
         @foreach($book->reviews as $review)
-            <p>
+            <h2>
                 {{ $review->title }}
+            </h2>
+
+            <p>
+                {{ $review->description }}
             </p>
         @endforeach
     </article>
