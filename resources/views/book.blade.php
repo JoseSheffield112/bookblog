@@ -23,9 +23,9 @@
                 {{ $review->title }}
             </h2>
 
-            <p>
-                {{ $review->reviwer()->name }}
-            </p>
+            <h3>
+                {{ $review->reviewer->name }}
+            </h3>
 
             <p>
                 {{ $review->description }}

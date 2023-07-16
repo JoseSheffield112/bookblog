@@ -30,15 +30,14 @@ Route::get('/users', function () {
 });
 
 Route::get('/book/{book:slug}', function (Book $book) {
-    ddd($book->load('reviews','user'));
-//    return view('book',[
-//       'book' =>  $book->load('reviews', 'reviewer')
-//    ]);
+    return view('book',[
+       'book' =>  $book->load('reviews', 'reviews.reviewer')
+    ]);
 });
 
 Route::get('user/{user:id}', function (User $user) {
     return view('reviews', [
-        'reviews' => $user->reviews->load('book')
+        'reviews' => $user->reviews
     ]);
 });
 
