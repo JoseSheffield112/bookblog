@@ -7,6 +7,7 @@ use Illuminate\Database\Seeder;
 
 use App\Models\Book;
 use App\Models\Review;
+use App\Models\User;
 
 class DatabaseSeeder extends Seeder
 {
@@ -16,11 +17,17 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         Review::factory(4)->create();
+        User::factory(2)->create();
 
         //
         $book = Book::factory()->create();
         Review::factory(5)->create([
             'book_id' => $book->id
+        ]);
+
+        //
+        $user = User::factory()->create([
+            'name' => 'Jose'
         ]);
     }
 }
