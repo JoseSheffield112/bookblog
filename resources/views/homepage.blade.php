@@ -16,4 +16,9 @@
     <a href="/catalogue">
         Let's go to our catalogue!
     </a>
+
+    <a href="/users">
+        Let's go to our users!
+    </a>
+
 @endsection

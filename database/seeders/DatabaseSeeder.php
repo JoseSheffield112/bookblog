@@ -29,5 +29,9 @@ class DatabaseSeeder extends Seeder
         $user = User::factory()->create([
             'name' => 'Jose'
         ]);
+        Review::factory(4)->create([
+            'user_id' => $user->id,
+            'book_id' => $book->id
+        ]);
     }
 }

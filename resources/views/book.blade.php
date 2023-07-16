@@ -14,6 +14,7 @@
         </p>
     </article>
 
+
     <h1>Reviews</h1>
 
     <article>
@@ -21,6 +22,10 @@
             <h2>
                 {{ $review->title }}
             </h2>
+
+            <p>
+                {{ $review->reviwer()->name }}
+            </p>
 
             <p>
                 {{ $review->description }}

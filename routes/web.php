@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Route;
 use App\Models\Book;
+use App\Models\User;
+use App\Models\Review;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,9 +23,22 @@ Route::get('/catalogue', function () {
     ]);
 });
 
+Route::get('/users', function () {
+    return view('users', [
+        'users' => User::latest()->get()
+    ]);
+});
+
 Route::get('/book/{book:slug}', function (Book $book) {
-    return view('book',[
-       'book' =>  $book->load('reviews')
+    ddd($book->load('reviews','user'));
+//    return view('book',[
+//       'book' =>  $book->load('reviews', 'reviewer')
+//    ]);
+});
+
+Route::get('user/{user:id}', function (User $user) {
+    return view('reviews', [
+        'reviews' => $user->reviews->load('book')
     ]);
 });
 
