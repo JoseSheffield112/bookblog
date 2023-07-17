@@ -13,6 +13,6 @@ class Book extends Model
     protected $fillable = ['slug', 'title', 'blurb', 'description'];
 
     public function reviews() {
-        return $this->hasMany(Review::class);
+        return $this->hasOne(Review::class);
     }
 }
