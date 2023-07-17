@@ -10,10 +10,10 @@
 
     @foreach($userReviews as $bookTitle=>$reviews)
 
-        {{ $bookTitle }}
+        Book : {{ $bookTitle }}
 
         <br>
-
+        Reviews:
         @foreach($reviews as $review)
             {{ $review->title }}
         @endforeach

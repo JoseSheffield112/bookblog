@@ -23,12 +23,6 @@ Route::get('/catalogue', function () {
     ]);
 });
 
-Route::get('/users', function () {
-    return view('users', [
-        'users' => User::latest()->get()
-    ]);
-});
-
 Route::get('/book/{book:slug}', function (Book $book) {
     return view('book',[
        'reviews' =>  $book->reviews()->with(['book', 'reviewer'])->get()
