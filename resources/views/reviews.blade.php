@@ -1,19 +1,27 @@
+@php use App\Models\Book; @endphp
 @extends('components.layout')
 
 @section('title')
-    Reviews
+        {{ $reviewer->name }}
 @endsection
 
 @section('content')
-    @foreach($reviews as $review)
-        <article>
-            <h1>
-                {{ $review->title }}
-            </h1>
+    <h1> This is a list of all reviews that {{$reviewer->name}} has posted</h1>
 
-            <p>
-                {{ $review->description }}
-            </p>
-        </article>
+    @foreach($userReviews as $bookTitle=>$reviews)
+
+        {{ $bookTitle }}
+
+        <br>
+
+        @foreach($reviews as $review)
+            {{ $review->title }}
+        @endforeach
     @endforeach
 @endsection
+
+
+{{-- USED when grouping by book id--}}
+{{--        @php--}}
+{{--            $book = Book::find($bookId);--}}
+{{--        @endphp--}}

@@ -31,13 +31,21 @@ Route::get('/users', function () {
 
 Route::get('/book/{book:slug}', function (Book $book) {
     return view('book',[
-       'book' =>  $book->load('reviews', 'reviews.reviewer')
+       'reviews' =>  $book->reviews()->with(['book', 'reviewer'])->get()
     ]);
+    /* VS using the below (think above is cleaner?)
+     *   return view('book',[
+     *   'book' =>  $book->load('reviews', 'reviews.reviewer')
+     *   ]);
+     *
+     */
 });
 
-Route::get('user/{user:id}', function (User $user) {
+Route::get('reviewer/{reviewer:id}', function (User $reviewer) {
+    // groupBy('book_id')
     return view('reviews', [
-        'reviews' => $user->reviews
+        'userReviews' => $reviewer->reviews()->with('book')->get()->groupBy('book.title'),
+        'reviewer' => $reviewer
     ]);
 });
 

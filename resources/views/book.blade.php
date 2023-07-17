@@ -1,32 +1,39 @@
 @extends('components.layout')
 
 @section('title')
-    {{ $book->title }}
+        {{ $reviews->first()->book->title }}
 @endsection
 
 @section('content')
 
     <article>
-        <h1> {{ $book->title }} </h1>
+        <h1> Book tile : {{ $reviews->first()->book->title }} </h1>
 
+        <h2>
+            Description
+        </h2>
         <p>
-            {{ $book->description }}
+            {{ $reviews->first()->book->description }}
         </p>
     </article>
 
+    <br>
 
     <h1>Reviews</h1>
 
     <article>
-        @foreach($book->reviews as $review)
+        @foreach($reviews as $review)
             <h2>
                 {{ $review->title }}
             </h2>
 
-            <h3>
-                {{ $review->reviewer->name }}
-            </h3>
+            <a href="/reviewer/{{$review->reviewer->id}}">
+                <p>
+                    By {{ $review->reviewer->name }}
+                </p>
+            </a>
 
+            Review:
             <p>
                 {{ $review->description }}
             </p>
