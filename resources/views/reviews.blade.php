@@ -13,9 +13,14 @@
         Book : {{ $bookTitle }}
 
         <br>
+
         Reviews:
+        <br>
         @foreach($reviews as $review)
-            {{ $review->title }}
+            <b> {{ $review->title }} </b> :
+
+            {{ $review->description }}
+            <br>
         @endforeach
     @endforeach
 @endsection
